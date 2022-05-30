@@ -133,6 +133,9 @@ We use VScode as our project IDE with PlatformIO IDE extension
     pio run -e verify -t upload
     ```
 10. When all is well, you can upload the **main.cpp** sketch. Join a new meeting on Zoom and go crazy.
+    ```ssh
+    pio run -e nano33ble -t upload
+    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
