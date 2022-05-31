@@ -52,7 +52,6 @@ USBKeyboard keyboard;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
 
   // initialize the IMU
   if (!IMU.begin()) {
