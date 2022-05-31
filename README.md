@@ -7,6 +7,8 @@
 
   <h3 align="center">Gesture Recognition for Zoom</h3>
 
+  <img src="hardware-resources/nano_wearable.png" height="240px"/>
+
   <p align="center">
     A wearable gadget that will allow users to focus on their Zoom meeting rather than messing with the mouse to operate tiny on-screen buttons
     <br />
@@ -44,8 +46,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 Covid-19 has forced many institutions to relocate educational activities to platforms like Zoom. However, many reports suggest that the lack of interactive features significantly lowers the effectiveness as well as learning experience. The main purpose of this project is to ease this
 situation by providing a more interactive environment for learning.
