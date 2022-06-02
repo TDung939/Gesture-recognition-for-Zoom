@@ -10,21 +10,13 @@
 #include "tensorflow/lite/version.h"
 
 #include "model.h"
-
-const float ACCELERATION_RMS_THRESHOLD = 2.0;  // RMS (root mean square) threshold of significant motion in G's
-const int NUM_CAPTURED_SAMPLES_PER_GESTURE = 119;
-const int NUM_FEATURES_PER_SAMPLE = 6;
-const int TOTAL_SAMPLES = NUM_CAPTURED_SAMPLES_PER_GESTURE * NUM_FEATURES_PER_SAMPLE;
-const int THRESHOLD_SAMPLE_INDEX =  ((NUM_CAPTURED_SAMPLES_PER_GESTURE / 3) * NUM_FEATURES_PER_SAMPLE); // one-third of data comes before threshold
+#include "constants.h"
 
 int capturedSamples = 0;
 
 // global variables used for TensorFlow Lite (Micro)
 tflite::MicroErrorReporter tflErrorReporter;
 
-// pull in all the TFLM ops, you can remove this line and
-// only pull in the TFLM ops you need, if would like to reduce
-// the compiled size of the sketch.
 tflite::AllOpsResolver tflOpsResolver;
 
 const tflite::Model* tflModel = nullptr;
@@ -32,17 +24,8 @@ tflite::MicroInterpreter* tflInterpreter = nullptr;
 TfLiteTensor* tflInputTensor = nullptr;
 TfLiteTensor* tflOutputTensor = nullptr;
 
-// Create a static memory buffer for TFLM, the size may need to
-// be adjusted based on the model you are using
 constexpr int tensorArenaSize = 8 * 1024;
 byte tensorArena[tensorArenaSize];
-
-// array to map gesture index to a name
-const char* GESTURES[] = {
-  "hand",
-  "mute",
-  "camera"
-};
 
 #define NUM_GESTURES 3
 
@@ -55,16 +38,6 @@ void setup() {
     Serial.println("Failed to initialize IMU!");
     while (1);
   }
-
-  // print out the samples rates of the IMUs
-  Serial.print("Accelerometer sample rate = ");
-  Serial.print(IMU.accelerationSampleRate());
-  Serial.println(" Hz");
-  Serial.print("Gyroscope sample rate = ");
-  Serial.print(IMU.gyroscopeSampleRate());
-  Serial.println(" Hz");
-
-  Serial.println();
 
   // get the TFL representation of the model byte array
   tflModel = tflite::GetModel(model);
@@ -87,7 +60,7 @@ void setup() {
 void loop() {
   float aX, aY, aZ, gX, gY, gZ;
 
-  // wait for threshold trigger, but keep N samples before threshold occurs
+  // wait for threshold trigger, but keep 39 samples before threshold occurs
   while (1) {
     // wait for both acceleration and gyroscope data to be available
     if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable()) {

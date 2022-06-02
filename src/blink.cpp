@@ -1,3 +1,4 @@
+// To check hardware connection
 #include <Arduino.h>
 
 void setup() {
