@@ -12,7 +12,7 @@
   <p align="center">
     A wearable gadget that will allow users to focus on their Zoom meeting rather than messing with the mouse to operate tiny on-screen buttons
     <br />
-    <a href="#"><strong>View Demo »</strong></a>
+    <a href="https://youtu.be/YRZn4PUMrcA"><strong>View Demo »</strong></a>
   </p>
 </div>
 
